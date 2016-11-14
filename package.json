@@ -1,0 +1,35 @@
+{
+  "name": "angular-io-datepicker",
+  "version": "1.0.0",
+  "description": "DatePicker directive for angular2",
+  "main": "./src/datepicker.directive.ts",
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "scroll",
+    "slimScroll",
+    "directive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rd-dev-ukraine/angular-io-datepicker"
+  },
+  "author": "Igor Turko <igor.turko@rd-dev.net>",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/core": "~2.1.1",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "^0.6.25"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.45",
+    "typescript": "^2.0.3"
+  },
+  "bugs": {
+    "url": "https://github.com/rd-dev-ukraine/angular-io-datepicker/issues"
+  },
+  "homepage": "https://github.com/rd-dev-ukraine/angular-io-datepicker#readme"
+}
