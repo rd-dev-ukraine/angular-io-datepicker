@@ -1,35 +1,38 @@
 {
   "name": "angular-io-datepicker",
-  "version": "1.0.0",
-  "description": "DatePicker directive for angular2",
-  "main": "./src/datepicker.directive.ts",
-  "scripts": {
-    "start": "tsc -w"
-  },
-  "keywords": [
-    "angular",
-    "angular2",
-    "scroll",
-    "slimScroll",
-    "directive"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rd-dev-ukraine/angular-io-datepicker"
-  },
-  "author": "Igor Turko <igor.turko@rd-dev.net>",
+  "version": "0.0.0",
   "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\"",
+    "pree2e": "webdriver-manager update"
+  },
+  "private": true,
   "dependencies": {
-    "@angular/core": "~2.1.1",
+    "@angular/common": "~2.1.0",
+    "@angular/compiler": "~2.1.0",
+    "@angular/core": "~2.1.0",
+    "@angular/forms": "~2.1.0",
+    "@angular/http": "~2.1.0",
+    "@angular/platform-browser": "~2.1.0",
+    "@angular/platform-browser-dynamic": "~2.1.0",
+    "@angular/router": "~3.1.0",
+    "core-js": "^2.4.1",
+    "debug": "^2.3.2",
+    "moment": "^2.14.1",
+    "pojo-fluent-validator": "^1.1.7",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.25"
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23"
   },
   "devDependencies": {
-    "@types/node": "^6.0.45",
-    "typescript": "^2.0.3"
-  },
-  "bugs": {
-    "url": "https://github.com/rd-dev-ukraine/angular-io-datepicker/issues"
-  },
-  "homepage": "https://github.com/rd-dev-ukraine/angular-io-datepicker#readme"
+    "@types/node": "^6.0.42",
+    "angular-cli": "1.0.0-beta.19-3",
+    "codelyzer": "1.0.0-beta.1",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "typescript": "~2.0.3",
+    "webdriver-manager": "10.2.5"
+  }
 }

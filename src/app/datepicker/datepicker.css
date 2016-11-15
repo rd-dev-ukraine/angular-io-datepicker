@@ -1,0 +1,126 @@
+.datepicker-panel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background: #fff;
+  border: 1px #ccc solid;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 28em;
+}
+.date-selector {
+  line-height: 2em;
+  text-align: center;
+  vertical-align: middle;
+}
+.day-selector.hidden {
+  display: none;
+}
+.day-selector__days-of-week {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.day-selector__day-of-week {
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-weight: bold;
+}
+.day-selector__days-of-month {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.day-selector__day-of-month {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 14%;
+  cursor: pointer;
+}
+.day-selector__day-of-month.selected {
+  background: #eee;
+}
+.day-selector__day-of-month.out-of-month {
+  color: #ccc;
+}
+.period-switch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.period-switch__change {
+  flex-grow: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 1em;
+}
+.period-switch__period {
+  flex-grow: 1;
+  flex-shrink: 1;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+.date-set {
+  text-align: center;
+  line-height: 2em;
+  vertical-align: middle;
+}
+.date-set.hidden {
+  display: none;
+}
+.date-set__dates {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.date-set__date {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 33%;
+  cursor: pointer;
+}
+.date-set__date.selected {
+  background: #eee;
+}
+.time-component-scroller {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  line-height: 2em;
+}
+.time-component-scroller__arrow {
+  cursor: pointer;
+}
+.time-component-scroller__value {
+  cursor: pointer;
+}
+.time-component-selector {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-size: 2em;
+}
+.time-component-selector__component {
+  margin: 0 0.5em;
+}
+.time-component-selector__am-pm {
+  cursor: pointer;
+}
