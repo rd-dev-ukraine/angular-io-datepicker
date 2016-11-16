@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Moment } from "moment";
 
 import { daysOfWeek, monthCalendar } from "../dateUtils";
@@ -37,7 +37,13 @@ import { AbstractSelector } from "./abstractSelector";
     </div>`
 })
 export class DaySelector extends AbstractSelector {
-    getDaysOfWeek(): string[] {
+    @Input() date: Moment;
+    @Output() dateChange: EventEmitter<Moment>;
+
+    @Output() dateSelected: EventEmitter<Moment>;
+    @Output() modeChanged: EventEmitter<any>;
+
+   getDaysOfWeek(): string[] {
         return daysOfWeek();
     }
 

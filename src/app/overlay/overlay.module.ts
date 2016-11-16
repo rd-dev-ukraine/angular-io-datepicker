@@ -1,7 +1,9 @@
 import { NgModule } from "@angular/core";
 
 
-import { OverlayService, OverlayHostComponent, OverlayComponent } from "./index";
+import { OverlayService } from "./overlayService";
+import { OverlayComponent } from "./overlayComponent";
+import { OverlayHostComponent } from "./overlayHostComponent";
 
 
 @NgModule({

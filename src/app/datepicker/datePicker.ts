@@ -1,12 +1,11 @@
-import { FormControl, ControlValueAccessor, Validators, ValidatorFn } from "@angular/forms";
-import { Component, ComponentRef, ElementRef, Input, ViewChild, ChangeDetectorRef, OnInit } from "@angular/core";
-import { Moment, utc  } from "moment";
+import { FormControl, ControlValueAccessor} from "@angular/forms";
+import { Component, ComponentRef, ElementRef, Input, ViewChild, OnInit } from "@angular/core";
+import { Moment, utc } from "moment";
 
-import { AlignType, OverlayService } from "../overlay/index";
+import { AlignType, OverlayService } from "../overlay";
 
 import { ControlValueAccessorProviderFactory, DatePickerMode, local, MomentParseFunction } from "./common";
 import { DatePickerPanel } from "./datePickerPanel";
-import { toDateTimeOffset, toMoment } from "../../assets/lib/parsers";
 
 
 const dateParseData = {
@@ -62,11 +61,6 @@ const defaultFormat: { [type: string]: string; } = {
     selector: "date-picker",
     providers: [ControlValueAccessorProviderFactory(DatePicker)],
     styleUrls: ["./datepicker.css"],
-    /*styles: [`
-        input[type='text'].ng-invalid {
-            border-left: 5px solid #a94442;
-        }
-    `],*/
     template: `
         <span class="input-group" #datePickerContainer>
             <input [value]="inputText"
@@ -85,16 +79,17 @@ const defaultFormat: { [type: string]: string; } = {
                     (click)="clear()" 
                     class="input-group-addon" 
                     type="button">
-                <span class="fa fa-close"></span>
+                <span class="fa fa-close">close</span>
             </button>
             <button [disabled]="disabled"
                     (click)="togglePopup()"
                     (mousedown)="$event.stopPropagation()" 
                     class="input-group-addon" 
                     type="button">
-                <span class="fa fa-calendar"></span>
+                <span class="fa fa-calendar">calendar</span>
             </button>
         </span>
+        <overlay-host></overlay-host>
     `
 })
 export class DatePicker implements ControlValueAccessor, OnInit {
@@ -107,29 +102,23 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     onTouched: any;
 
     @Input() control: FormControl;
-    @Input() mode: DatePickerMode = "date";
+    @Input() mode: DatePickerMode = 'date';
     @Input() showClearButton: boolean = true;
     @Input() format: string;
     @Input() id: string;
     @Input() disabled: boolean;
-    @Input() required: boolean;
 
 
     constructor(
-        private overlayService: OverlayService,
-        private hostElementRef: ElementRef,
-        private ref: ChangeDetectorRef) {
+        private overlayService: OverlayService
+    ) {
+        this.control = new FormControl();
     }
 
 
     ngOnInit(): void {
         this.parseValue = parserFabric(this.mode, this.currentFormat);
-        const validators: ValidatorFn[] = [validDateTimeOffset];
-        if (this.required) {
-            validators.push(Validators.required);
-        }
-        this.control.setValidators(Validators.compose(validators));
-        this.updateControlText(this.formatValue(toMoment(this.control.value)));
+        this.updateControlText(this.formatValue(this.control.value));
         if (!this.disabled) {
             this.control.updateValueAndValidity({onlySelf: true});
         }
@@ -168,7 +157,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
                 this.onChange(this._value);
             }
 
-            this.control.setValue(toDateTimeOffset(this._value));
+            this.control.setValue(this._value);
             const formatted = this.formatValue(this._value);
             this.updateControlText(formatted);
         } else {
@@ -284,22 +273,6 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     private _value: Moment;
     private _popupRef: ComponentRef<any>;
     private parseValue: ParserFunction;
-}
-
-
-function validDateTimeOffset(control: FormControl): { [key: string]: boolean } {
-    // don't validate empty control
-    if (!control.value) {
-        return null;
-    }
-
-    if (!control.value.date || !utc(control.value.date).isValid()) {
-        return {
-            invalidDate: true
-        };
-    }
-
-    return null;
 }
 
 

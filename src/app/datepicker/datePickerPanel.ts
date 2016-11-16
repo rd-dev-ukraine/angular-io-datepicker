@@ -1,5 +1,5 @@
 import { ControlValueAccessor } from "@angular/forms";
-import { Component, Input } from "@angular/core";
+import {Component, Input, Output, EventEmitter} from "@angular/core";
 import { Moment } from "moment";
 
 import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./common";
@@ -22,6 +22,10 @@ import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./co
 })
 export class DatePickerPanel implements ControlValueAccessor {
     @Input("type") mode: DatePickerMode = "date";
+    @Output() dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+
+    @Output() dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
+    @Output() modeChanged: EventEmitter<any> = new EventEmitter<any>();
 
     get dateSelectorVisible(): boolean {
         return this.mode === "date" || this.mode === "datetime";

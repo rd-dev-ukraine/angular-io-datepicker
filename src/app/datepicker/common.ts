@@ -1,9 +1,7 @@
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { forwardRef, Provider, Type } from "@angular/core";
 import { Moment } from "moment";
-import * as m from "moment";
-
-import { deDefaultify  } from "../../assets/lib/utils";
+import * as moment from "moment";
 
 
 export type DatePickerMode = "date" | "datetime" | "time";
@@ -17,7 +15,6 @@ export interface MomentParseFunction {
 
 
 export function local(value?: any, format?: string | string[], strictParsing?: boolean): Moment {
-    const moment = deDefaultify(m);
     return moment(value, format, strictParsing);
 }
 

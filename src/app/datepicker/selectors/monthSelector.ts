@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Moment } from "moment";
 
 import { AbstractSelector } from "./abstractSelector";
@@ -29,6 +29,12 @@ import { AbstractSelector } from "./abstractSelector";
     `
 })
 export class MonthSelector extends AbstractSelector {
+    @Input() date: Moment;
+    @Output() dateChange: EventEmitter<Moment>;
+
+    @Output() dateSelected: EventEmitter<Moment>;
+    @Output() modeChanged: EventEmitter<any>;
+
     prev(): void {
         this.value = this.value.subtract(1, "year");
     }
