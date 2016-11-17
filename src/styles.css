@@ -19,7 +19,6 @@ body {
 
 .root {
     display: flex;
-    height: 100vh;
     padding: 10px 5px;
     justify-content: space-between;
     flex-wrap: wrap;

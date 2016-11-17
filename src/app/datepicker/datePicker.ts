@@ -62,7 +62,7 @@ const defaultFormat: { [type: string]: string; } = {
     providers: [ControlValueAccessorProviderFactory(DatePicker)],
     styleUrls: ["./datepicker.css"],
     template: `
-        <span class="input-group" #datePickerContainer>
+        <span class="datepicker-actions" #datePickerContainer>
             <input [value]="inputText"
                    [id]="id" 
                    [disabled]="disabled"
@@ -72,21 +72,21 @@ const defaultFormat: { [type: string]: string; } = {
                    (blur)="control.markAsTouched()"
                    (keydown.tab)="closePopup()"
                    (keydown.esc)="closePopup()"
-                   class="form-control" 
+                   class="datepicker-actions__input" 
                    type="text" />
             <button [hidden]="!showClearButton"
                     [disabled]="disabled"
                     (click)="clear()" 
-                    class="input-group-addon" 
+                    class="datepicker-actions__button" 
                     type="button">
-                <span class="fa fa-close">close</span>
+                <span class="datepicker__buttonIcon datepicker__buttonIcon-close"></span>
             </button>
             <button [disabled]="disabled"
                     (click)="togglePopup()"
                     (mousedown)="$event.stopPropagation()" 
-                    class="input-group-addon" 
+                    class="datepicker-actions__button" 
                     type="button">
-                <span class="fa fa-calendar">calendar</span>
+                <span class="datepicker__buttonIcon datepicker__buttonIcon-calendar"></span>
             </button>
         </span>
         <overlay-host></overlay-host>

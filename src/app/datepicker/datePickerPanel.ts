@@ -1,5 +1,5 @@
 import { ControlValueAccessor } from "@angular/forms";
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Moment } from "moment";
 
 import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./common";
@@ -21,7 +21,7 @@ import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./co
     styleUrls: ["./datepicker.css"]
 })
 export class DatePickerPanel implements ControlValueAccessor {
-    @Input("type") mode: DatePickerMode = "date";
+    @Input("type") mode: DatePickerMode = "date"; // todo зачем дефолт
     @Output() dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
 
     @Output() dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
