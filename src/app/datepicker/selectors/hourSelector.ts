@@ -16,7 +16,7 @@ import { AbstractSelector } from "./abstractSelector";
                      'date-set__date': true, 
                      'selected': isCurrentHour(hour) 
                 }"
-                (mousedown)="dateChange.emit(hour); $event.preventDefault(); $event.stopPropagation();">
+                (mousedown)="isCurrentHour(hour) ? hour : dateChange.emit(hour); $event.preventDefault(); $event.stopPropagation();">
                 {{ hour.format("hh") }}
             </li>
         </ul>
@@ -35,7 +35,7 @@ export class HourSelector extends AbstractSelector {
         startDate.hour(startDate.hour() < 12 ? 0 : 12);
 
         const result: Moment[] = [];
-        for (let i = 0; i < 12; i++) {
+        for (let i = 1; i < 13; i++) {
             result.push(startDate.clone().add(i, "hour"));
         }
 
@@ -43,6 +43,7 @@ export class HourSelector extends AbstractSelector {
     }
 
     protected isCurrentHour(date: Moment): boolean {
+        console.log(date, this.value.hour());
         return date && this.value && this.value.hour() === date.hour();
     }
 }

@@ -1,3 +1,51 @@
-<form #form="ngForm">
-    <date-picker></date-picker>
-</form>
+<div class="example">
+    <form [formGroup]="form">
+        <date-picker format="LL" formControlName="myDate"></date-picker>
+        <pre>form = {{ form.value | json  }}
+        {{ form.controls.myDate.touched }}
+        </pre>
+    </form>
+    <form #form1="ngForm">
+        <date-picker format="LL" [(ngModel)]="myDate" name="date1"></date-picker>
+        <pre>{{ myDate }}</pre>
+        <pre>form = {{ form1.value | json }}</pre>
+        <button (click)="myDate = myDate1">kk</button>
+    </form>
+</div>
+<!--<div class="example">
+    <form #form="ngForm">
+        <date-picker mode="datetime"></date-picker>
+    </form>
+    <pre><code>mode="datetime"</code></pre>
+</div>
+<div class="example">
+    <form #form="ngForm">
+        <date-picker mode="time"></date-picker>
+    </form>
+    <pre><code>mode="time"</code></pre>
+</div>
+<div class="example">
+    <form #form="ngForm">
+        <date-picker [showClearButton]="false"></date-picker>
+    </form>
+    <pre><code>[showClearButton]="false"</code></pre>
+</div>
+<div class="example">
+    <form #form="ngForm">
+        <date-picker [format]="'LLL'"></date-picker>
+    </form>
+    <pre><code>[format]="'LLL'"</code></pre>
+</div>
+<div class="example">
+    <form #form="ngForm">
+        <date-picker [format]="'dddd'"></date-picker>
+    </form>
+    <pre><code>[format]="'dddd'"</code></pre>
+</div>
+<div class="example">
+    <form #form="ngForm">
+        <date-picker [disabled]="true"></date-picker>
+    </form>
+    <pre><code>[disabled]="true"</code></pre>
+</div>-->
+

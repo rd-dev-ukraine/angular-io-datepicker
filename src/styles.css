@@ -20,12 +20,13 @@ body {
 .root {
     display: flex;
     padding: 10px 5px;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 .example {
-    flex-basis: 200px;
+    flex-basis: 300px;
+    height: 340px;
     margin: 3px;
     font-size: 15px;
 }

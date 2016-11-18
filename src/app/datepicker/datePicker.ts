@@ -64,15 +64,13 @@ const defaultFormat: { [type: string]: string; } = {
     template: `
         <span class="datepicker-actions" #datePickerContainer>
             <input [value]="inputText"
-                   [id]="id" 
                    [disabled]="disabled"
-                   [class.ng-invalid]="!control.valid"
                    (change)="raiseOnChange($event.target.value)"
                    (focus)="openPopup()"
-                   (blur)="control.markAsTouched()"
+                   (blur)="onTouched()"
                    (keydown.tab)="closePopup()"
                    (keydown.esc)="closePopup()"
-                   class="datepicker-actions__input" 
+                   class="datepicker-actions__input"
                    type="text" />
             <button [hidden]="!showClearButton"
                     [disabled]="disabled"
@@ -95,38 +93,33 @@ const defaultFormat: { [type: string]: string; } = {
 export class DatePicker implements ControlValueAccessor, OnInit {
 
     @ViewChild("datePickerContainer") datePickerContainer: ElementRef;
-    @Input() inputText: string = "";
+
+    inputText: string = "";
+    onChange:any = () => {};
+    onTouched:any = () => {};
 
 
-    onChange: any;
-    onTouched: any;
-
-    @Input() control: FormControl;
-    @Input() mode: DatePickerMode = 'date';
+    @Input() mode: DatePickerMode = "date";
     @Input() showClearButton: boolean = true;
     @Input() format: string;
-    @Input() id: string;
     @Input() disabled: boolean;
 
 
     constructor(
         private overlayService: OverlayService
     ) {
-        this.control = new FormControl();
     }
 
 
     ngOnInit(): void {
         this.parseValue = parserFabric(this.mode, this.currentFormat);
-        this.updateControlText(this.formatValue(this.control.value));
-        if (!this.disabled) {
-            this.control.updateValueAndValidity({onlySelf: true});
-        }
     }
 
 
-    writeValue(fn: any): void {
-        fn(this._value);
+    writeValue(value): void {
+        if (value) {
+            this.raiseOnChange(this.parseValue(value, local));
+        }
     }
 
 
@@ -142,12 +135,12 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     /** Raises handers registered by ControlValueAccessor.registerOnChange method with converted value. */
     raiseOnChange(value: any): void {
-        this.control.markAsDirty();
         const parsed = this.parseValue(value, local);
         if (!parsed) {
             this._value = null;
-            this.control.setValue("");
+            // this.control.setValue("");
             this.updateControlText("");
+            // this.control.valid = false;
         }
         else if (parsed.isValid()) {
             // If format is not contains time (only date)
@@ -157,12 +150,12 @@ export class DatePicker implements ControlValueAccessor, OnInit {
                 this.onChange(this._value);
             }
 
-            this.control.setValue(this._value);
+            // this.control.setValue(this._value);
             const formatted = this.formatValue(this._value);
             this.updateControlText(formatted);
         } else {
             this.updateControlText(value);
-            this.control.setValue(value);
+            // this.control.setValue(value);
         }
     }
 
@@ -260,6 +253,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         if (!value || !value.isValid()) {
             return value;
         }
+        console.log('valid date');
 
         const mode: DatePickerMode = this.mode || "date";
         if (mode === "date") {
