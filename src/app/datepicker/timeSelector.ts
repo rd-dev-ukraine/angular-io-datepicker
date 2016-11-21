@@ -2,7 +2,7 @@ import { ControlValueAccessor } from "@angular/forms";
 import { Component } from "@angular/core";
 import { Moment } from "moment";
 
-import { ControlValueAccessorProviderFactory, local, OnChangeHandler } from "./common";
+import { ControlValueAccessorProviderFactory, local, OnChangeHandler, OnTouchedHandler } from "./common";
 
 
 export type TimeSelectorMode = "time" | "hour" | "minute";
@@ -28,6 +28,10 @@ export type TimeSelectorMode = "time" | "hour" | "minute";
 export class TimeSelector implements ControlValueAccessor {
     displayDate: Moment = local();
     mode: TimeSelectorMode = "time";
+
+    private _onChange: OnChangeHandler;
+    private _onTouched: OnTouchedHandler;
+    private _selectedDate: Moment;
 
     get selectedDate(): Moment {
         if (!this._selectedDate) {
@@ -70,12 +74,7 @@ export class TimeSelector implements ControlValueAccessor {
         this._onChange = fn;
     }
 
-    registerOnTouched(fn: Function): void {
+    registerOnTouched(fn: OnTouchedHandler): void {
         this._onTouched = fn;
     }
-
-    private _selectedDate: Moment;
-
-    private _onChange: OnChangeHandler;
-    private _onTouched: Function;
 }

@@ -7,14 +7,14 @@ import { Moment } from "moment";
     styleUrls: ["../datepicker.css"],
     template: `
     <div class="time-component-scroller">
-        <span class="time-component-scroller__arrow up fa fa-chevron-up"
+        <span class="time-component-scroller__arrow up datepicker__buttonIcon datepicker__buttonIcon-arrow-up"
               (click)="up.emit($event)">
         </span>
         <span class="time-component-scroller__value"
              (click)="selectValue.emit($event)">
             {{ value?.format(format) }}
         </span>
-        <span class="time-component-scroller__arrow down fa fa-chevron-down"
+        <span class="time-component-scroller__arrow down datepicker__buttonIcon datepicker__buttonIcon-arrow-down"
               (click)="down.emit($event)">
         </span>
     </div>

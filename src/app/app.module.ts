@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-      ReactiveFormsModule,
+    ReactiveFormsModule,
     HttpModule,
     OverlayModule,
     DatePickerModule

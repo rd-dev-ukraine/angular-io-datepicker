@@ -43,7 +43,6 @@ export class HourSelector extends AbstractSelector {
     }
 
     protected isCurrentHour(date: Moment): boolean {
-        console.log(date, this.value.hour());
         return date && this.value && this.value.hour() === date.hour();
     }
 }

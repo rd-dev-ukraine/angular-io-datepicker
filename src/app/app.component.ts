@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,15 +7,18 @@ import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 })
 export class AppComponent {
   form: FormGroup;
-  myDate1 = new Date();
+  form3: FormGroup;
+  adsf1 = new Date();
 
-  constructor(private fb: FormBuilder) {
-  }
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      myDate: new FormControl(new Date()),
-      myInput: new FormControl("33444")
+      myDate: ['']
+    });
+    this.form3 = this.fb.group({
+      myDate4: ['']
     });
   }
 }

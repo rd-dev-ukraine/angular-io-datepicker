@@ -1,10 +1,10 @@
-import { FormControl, ControlValueAccessor} from "@angular/forms";
+import { ControlValueAccessor, AbstractControl } from "@angular/forms";
 import { Component, ComponentRef, ElementRef, Input, ViewChild, OnInit } from "@angular/core";
 import { Moment, utc } from "moment";
 
 import { AlignType, OverlayService } from "../overlay";
 
-import { ControlValueAccessorProviderFactory, DatePickerMode, local, MomentParseFunction } from "./common";
+import { ControlValueAccessorProviderFactory, ValidatorProviderFactory, DatePickerMode, local, MomentParseFunction, OnChangeHandler, OnTouchedHandler } from "./common";
 import { DatePickerPanel } from "./datePickerPanel";
 
 
@@ -59,7 +59,7 @@ const defaultFormat: { [type: string]: string; } = {
 
 @Component({
     selector: "date-picker",
-    providers: [ControlValueAccessorProviderFactory(DatePicker)],
+    providers: [ControlValueAccessorProviderFactory(DatePicker), ValidatorProviderFactory(DatePicker)],
     styleUrls: ["./datepicker.css"],
     template: `
         <span class="datepicker-actions" #datePickerContainer>
@@ -94,21 +94,17 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     @ViewChild("datePickerContainer") datePickerContainer: ElementRef;
 
+    private onChange: OnChangeHandler;
+    private onTouched: OnTouchedHandler;
+
     inputText: string = "";
-    onChange:any = () => {};
-    onTouched:any = () => {};
-
-
     @Input() mode: DatePickerMode = "date";
     @Input() showClearButton: boolean = true;
     @Input() format: string;
     @Input() disabled: boolean;
 
 
-    constructor(
-        private overlayService: OverlayService
-    ) {
-    }
+    constructor(private overlayService: OverlayService) {}
 
 
     ngOnInit(): void {
@@ -118,18 +114,28 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     writeValue(value): void {
         if (value) {
-            this.raiseOnChange(this.parseValue(value, local));
+            this.raiseOnChange(value);
         }
     }
 
 
-    registerOnChange(fn: any): void {
+    registerOnChange(fn: OnChangeHandler): void {
         this.onChange = fn;
     }
 
 
-    registerOnTouched(fn: any): void {
+    registerOnTouched(fn: OnTouchedHandler): void {
         this.onTouched = fn;
+    }
+
+    validate(c: AbstractControl) : {[key: string]: any} {
+        const value = this.parseValue(c.value, local);
+        const err = {
+            "parseError": "value has not been parsed"
+        };
+        if (c.pristine && !c.touched) return null;
+
+        return !value ? err : !value.isValid() ? err : null;
     }
 
 
@@ -138,24 +144,20 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         const parsed = this.parseValue(value, local);
         if (!parsed) {
             this._value = null;
-            // this.control.setValue("");
             this.updateControlText("");
-            // this.control.valid = false;
         }
         else if (parsed.isValid()) {
             // If format is not contains time (only date)
             // do not convert a value to UTC (to prevent date shift)
             this._value = this.convertValue(parsed);
-            if (this.onChange) {
-                this.onChange(this._value);
-            }
 
-            // this.control.setValue(this._value);
             const formatted = this.formatValue(this._value);
             this.updateControlText(formatted);
         } else {
             this.updateControlText(value);
-            // this.control.setValue(value);
+        }
+        if (this.onChange) {
+            this.onChange(this.convertValue(parsed));
         }
     }
 
@@ -238,9 +240,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     /** Format based on date picker current type. */
     private get currentFormat(): string {
         const type = this.mode || "date";
-        const format = this.format || defaultFormat[type];
 
-        return format;
+        return this.format || defaultFormat[type];
     }
 
 
@@ -253,13 +254,12 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         if (!value || !value.isValid()) {
             return value;
         }
-        console.log('valid date');
 
         const mode: DatePickerMode = this.mode || "date";
         if (mode === "date") {
             return utc({ year: value.year(), month: value.month(), date: value.date() });
         } else {
-            return value.utc().clone();
+            return value.clone().utc();
         }
     }
 
@@ -287,7 +287,6 @@ function parserFabric( mode, format): ParserFunction {
         }
 
         const formatsToParse = parseFormat[mode || "date"];
-
         return parseFn(value, [format, ...formatsToParse], true);
     };
 }
