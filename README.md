@@ -1,12 +1,22 @@
 # angular-io-datePicker
 
-Customizable datepicker component for Angular 2.
+Customizable DatePicker component for Angular 2.
+
+## Motivation
+
+Existing DatePickers do not work as they should... So we have written another one 😏
+
+## Installation
+
+````shell
+npm i angular-io-datepicker --save
+````
 
 ## Code Example
 
-#### [Demo](https://rd-dev-ukraine.github.io/angular-io-datepicker)
+#### [Demo](https://rd-dev-ukraine.github.io/angular-io-datepicker/)
 
-You'll need to add `DatePickerModule` and `OverlayModule` to your application module. There is has to be `FormsModule`. If you use Model-Driven Form you need to add `ReactiveFormModule` too.
+You'll need to add `DatePickerModule` and `OverlayModule` to your application module. There is has to be `FormsModule`. If you use Model-Driven Form you'll need to add `ReactiveFormModule` too.
 
 ```typescript
 @NgModule({
@@ -40,7 +50,7 @@ Simply add `date-picker` element with options to your form:
 
 ##### Model-Driven Form
 
-You will need to add form initialization to your app-component at first:
+You'll need to add form initialization to your app-component at first:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -71,26 +81,16 @@ And then add `date-picker` element to your form:
 </form>
 ```
 
-## Motivation
-
-Existing slimScrolls do not work as they should... So we have written another one 😏
-
-## Installation
-
-````shell
-npm i angular-io-datepicker --save
-````
-
 ## API Reference
 
 Options can be passed to an element via html attributes:
 
-|Property         |Type   |Default                                                          |Description                               |
-| :-------------- | :---- | :-------------------------------------------------------------- | :--------------------------------------- |
-|`mode`           |string |`date`                                                           |Changes view mode - date, datetime, time  |
-|`disabled`       |boolean|`false`                                                          |Disables controls                         |
-|`showClearButton`|boolean|`true`                                                           |Show or not clear input button            |
-|`format`         |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides `moment`|
+|Property         |Type   |Default                                                          |Description                                                                        |
+| :-------------- | :---- | :-------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+|`mode`           |string |`date`                                                           |Changes view mode - date, datetime, time                                           |
+|`disabled`       |boolean|`false`                                                          |Disables controls                                                                  |
+|`showClearButton`|boolean|`true`                                                           |Show or not clear input button                                                     |
+|`format`         |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides [moment](http://momentjs.com/docs/#/displaying/ )|
 
 
 ## License

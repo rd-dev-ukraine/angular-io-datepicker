@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/rd-dev-ukraine/angular-io-datepicker"
   },
-  "author": "Igor Turko <igor.turko@rd-dev.net>",
+  "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
   "license": "MIT",
   "dependencies": {
     "@angular/core": "~2.1.0",
