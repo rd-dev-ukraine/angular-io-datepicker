@@ -133,9 +133,10 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         const err = {
             "parseError": "value has not been parsed"
         };
+
         if (c.pristine && !c.touched) return null;
 
-        return !value ? err : !value.isValid() ? err : null;
+        return !value.isValid() ? err : null;
     }
 
 

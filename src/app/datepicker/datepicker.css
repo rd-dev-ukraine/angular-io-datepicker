@@ -35,7 +35,6 @@
 
 .datepicker-actions {
     display: flex;
-    max-width: 20em;
 }
 
 .datepicker-actions__input {
@@ -228,12 +227,4 @@
 
 .time-component-selector__component {
     padding-right: .5em;
-}
-
-.ng-valid[required] {
-    border-left: 5px solid #42A948;
-}
-
-.ng-invalid:not(form) {
-    border-left: 5px solid #a94442;
 }

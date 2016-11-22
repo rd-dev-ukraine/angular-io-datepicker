@@ -44,3 +44,7 @@ code {
     font-family: Fira, monospace;
     font-size: 13px;
 }
+
+.alert {
+    color: red;
+}

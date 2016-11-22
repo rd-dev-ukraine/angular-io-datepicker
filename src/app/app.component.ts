@@ -7,18 +7,12 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class AppComponent {
   form: FormGroup;
-  form3: FormGroup;
-  adsf1 = new Date();
-
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      myDate: ['']
-    });
-    this.form3 = this.fb.group({
-      myDate4: ['']
+      date: ''
     });
   }
 }
