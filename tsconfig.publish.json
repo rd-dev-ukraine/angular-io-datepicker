@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES5",
+    "lib": [
+      "es2016",
+      "es2015.promise",
+      "dom"
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": true
+  },
+  "file": [
+    "src/datepicker/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/app",
+    "src/environments",
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/typings.d.ts"
+  ]
+}

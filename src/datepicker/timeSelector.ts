@@ -12,7 +12,7 @@ export type TimeSelectorMode = "time" | "hour" | "minute";
     providers: [ControlValueAccessorProviderFactory(TimeSelector)],
     styleUrls: ["./datepicker.css"],
     template: `
-        <time-component-selector *ngIf=" mode === 'time' " 
+        <time-component-selector *ngIf=" mode === 'time' "
                                  [(date)]="selectedDate"
                                  (selectHour)=" mode = 'hour' "
                                  (selectMinute)=" mode= 'minute' ">
@@ -26,40 +26,35 @@ export type TimeSelectorMode = "time" | "hour" | "minute";
     `
 })
 export class TimeSelector implements ControlValueAccessor {
-    displayDate: Moment = local();
-    mode: TimeSelectorMode = "time";
-
     private _onChange: OnChangeHandler;
     private _onTouched: OnTouchedHandler;
     private _selectedDate: Moment;
 
-    get selectedDate(): Moment {
-        if (!this._selectedDate) {
-            return null;
-        }
+    public displayDate: Moment = local();
+    public mode: TimeSelectorMode = "time";
 
-        return this._selectedDate.clone();
+    public get selectedDate(): Moment {
+        return !this._selectedDate ? null : this._selectedDate.clone();
+
     }
 
-    set selectedDate(value: Moment) {
+    public set selectedDate(value: Moment) {
         if (value && value.isValid()) {
             this._selectedDate = value.clone();
             this.displayDate = value.clone();
 
-            if (this._onChange) {
-                this._onChange(this.selectedDate.clone());
-            }
+            this._onChange && this._onChange(this.selectedDate.clone());
         }
 
         this.mode = "time";
     }
 
-    writeValue(val: any): void {
+    public writeValue(val: string): void {
         if (val === null || val === undefined) {
             this._selectedDate = null;
         } else {
-
             let parsed = local(val);
+
             if (!parsed.isValid()) {
                 parsed = null;
             }
@@ -70,11 +65,11 @@ export class TimeSelector implements ControlValueAccessor {
         this.displayDate = this.selectedDate || local();
     }
 
-    registerOnChange(fn: OnChangeHandler): void {
+    public registerOnChange(fn: OnChangeHandler): void {
         this._onChange = fn;
     }
 
-    registerOnTouched(fn: OnTouchedHandler): void {
+    public registerOnTouched(fn: OnTouchedHandler): void {
         this._onTouched = fn;
     }
 }

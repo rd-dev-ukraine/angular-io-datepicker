@@ -5,5 +5,6 @@ export * from "./hourSelector";
 export * from "./minuteSelector";
 export * from "./monthSelector";
 export * from "./timeComponentSelector";
+export * from "./timeComponentScroller";
 export * from "./yearSelector";
 export * from "./periodSwitch"

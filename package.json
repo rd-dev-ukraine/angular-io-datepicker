@@ -1,8 +1,9 @@
 {
   "name": "angular-io-datepicker",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Datepicker component for angular2",
-  "main": "./src/datepicker/datepicker.module.ts",
+  "main": "./src/datepicker/index.js",
+  "typings": "./src/datepicker/index.d.ts",
   "keywords": [
     "angular",
     "angular2",
@@ -11,26 +12,48 @@
     "pick",
     "picker",
     "moment",
-    "overlay"
+    "overlay",
+    "popup",
+    "component"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rd-dev-ukraine/angular-io-datepicker"
   },
-  "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
-  "license": "MIT",
-  "dependencies": {
-    "@angular/core": "~2.1.0",
-    "@angular/forms": "~2.1.0",
-    "moment": "^2.14.1"
-  },
-  "devDependencies": {
-    "@types/node": "^6.0.42",
-    "angular-io-overlay": "^1.0.1",
-    "typescript": "~2.0.3"
-  },
   "bugs": {
     "url": "https://github.com/rd-dev-ukraine/angular-io-datepicker/issues"
   },
-  "homepage": "https://github.com/rd-dev-ukraine/angular-io-datepicker#readme"
+  "homepage": "https://github.com/rd-dev-ukraine/angular-io-datepicker#readme",
+  "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ng serve",
+    "deploy": "ng build --prod --base-href \"angular-io-datepicker\" && ngh",
+    "prepublish": "tsc -p tsconfig.publish.json"
+  },
+  "dependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "angular-io-overlay": "^1.2.5",
+    "core-js": "^2.4.1",
+    "moment": "^2.14.1",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@types/node": "~6.0.60",
+    "angular-io-overlay": "^1.2.4",
+    "codelyzer": "~2.0.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
+  }
 }

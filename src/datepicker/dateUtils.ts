@@ -13,10 +13,9 @@ export function areDatesEqual(d1: Moment, d2: Moment): boolean {
         d1.dayOfYear() === d2.dayOfYear();
 }
 
-
 /**
- * Array of days belongs to the month of the specified date 
- * including previous and next month days which are on the same week as first and last month days. 
+ * Array of days belongs to the month of the specified date
+ * including previous and next month days which are on the same week as first and last month days.
  */
 export function monthCalendar(date: Moment): Moment[] {
     const start = date.clone().startOf("month").startOf("week").startOf("day");
@@ -39,7 +38,6 @@ export function monthCalendar(date: Moment): Moment[] {
     return result;
 }
 
-
 /**
  * Gets array of localized days of week.
  */
@@ -52,7 +50,6 @@ export function daysOfWeek(): string[] {
 
     return result;
 }
-
 
 export function decade(date: Moment): Moment[] {
     if (!date || !date.isValid()) {

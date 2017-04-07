@@ -1,0 +1,65 @@
+<div class="example">
+    <form #form1="ngForm">
+        <date-picker ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form1.value | json }}</pre>
+        <pre><code>ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form1.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form2="ngForm">
+        <date-picker mode="datetime" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form2.value | json }}</pre>
+        <pre><code>mode="datetime" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form2.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form3="ngForm">
+        <date-picker mode="time" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form3.value | json }}</pre>
+        <pre><code>mode="time" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form3.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form [formGroup]="form">
+        <date-picker mode="time" formControlName="date"></date-picker>
+        <pre>Model-Driven Form = {{ form.value | json  }}</pre>
+        <pre><code>mode="time" formControlName="date"</code></pre>
+        <p class="alert" *ngIf="!form.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form4="ngForm">
+        <date-picker [showClearButton]="false" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form4.value | json }}</pre>
+        <pre><code>[showClearButton]="false" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form4.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form5="ngForm">
+        <date-picker [disabled]="true" ngModel name="date"></date-picker>
+        <input type="text" ngModel name="arst" style="display: none">
+        <pre>Template-Driven Form = {{ form5.value | json }}</pre>
+        <pre><code>[disabled]="true" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form5.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form6="ngForm">
+        <date-picker format="L" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form6.value | json }}</pre>
+        <pre><code>format="L" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form6.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
+    <form #form7="ngForm">
+        <date-picker format="dddd" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form7.value | json }}</pre>
+        <pre><code>format="dddd" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form7.valid">Form is invalid!</p>
+    </form>
+</div>

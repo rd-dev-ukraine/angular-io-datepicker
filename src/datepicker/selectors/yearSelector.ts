@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Moment } from "moment";
 
 import { decade } from "../dateUtils";
@@ -10,44 +10,46 @@ import { AbstractSelector } from "./abstractSelector";
     selector: "year-selector",
     styleUrls: ["../datepicker.css"],
     template: `
-    <div class="date-set">
-        <period-switch [period]="formatDecade(date)"
-                       (prev)="prev()"
-                       (next)="next()"
-                       (modeChange)="modeChanged.emit($event)">
-        </period-switch>
-        <ul class="date-set__dates">
-            <li *ngFor="let year of years()"
-                [ngClass]="
+        <div class="date-set">
+            <period-switch [period]="formatDecade(date)"
+                           (prev)="prev()"
+                           (next)="next()"
+                           (modeChange)="modeChanged.emit($event)">
+            </period-switch>
+            <ul class="date-set__dates">
+                <li *ngFor="let year of years()"
+                    [ngClass]="
                 {
                      'date-set__date': true, 
                      'selected': isSelected(year) 
                 }"
-                (mousedown)="dateSelected.emit(year); $event.preventDefault(); $event.stopPropagation();">
-                {{ year.format("YYYY") }}
-            </li>
-        </ul>
-    </div>
+                    (mousedown)="dateSelected.emit(year); $event.preventDefault(); $event.stopPropagation();">
+                    {{ year.format("YYYY") }}
+                </li>
+            </ul>
+        </div>
     `
 })
 export class YearSelector extends AbstractSelector {
-    @Input() date: Moment;
-    @Output() dateChange: EventEmitter<Moment>;
+    @Input()
+    public date: Moment;
+    @Output()
+    public dateChange: EventEmitter<Moment>;
+    @Output()
+    public dateSelected: EventEmitter<Moment>;
+    @Output()
+    public modeChanged: EventEmitter<any>;
 
-    @Output() dateSelected: EventEmitter<Moment>;
-    @Output() modeChanged: EventEmitter<any>;
-
-    prev(): void {
+    public prev(): void {
         this.value = this.value.subtract(10, "year");
     }
 
-    next(): void {
+    public next(): void {
         this.value = this.value.add(10, "year");
     }
 
-    protected years(): Moment[] {
+    public years(): Moment[] {
         const [start] = decade(this.value);
-
         const result: Moment[] = [];
 
         for (let year = 0; year < 10; year++) {

@@ -1,59 +1,66 @@
 import { ControlValueAccessor } from "@angular/forms";
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Moment } from "moment";
 
-import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./common";
+import { ControlValueAccessorProviderFactory, local } from "./common";
 
 
 @Component({
     selector: "datepicker-panel",
     providers: [ControlValueAccessorProviderFactory(DatePickerPanel)],
     template: `
-    <div class="datepicker-panel">
-        <date-selector *ngIf="dateSelectorVisible"
-                       [(ngModel)]="date">
-        </date-selector>
-        <time-selector *ngIf="timeSelectorVisible"
-                    [(ngModel)]="time">
-        </time-selector>
-    </div>
+        <div class="datepicker-panel">
+            <date-selector *ngIf="dateSelectorVisible"
+                           [(ngModel)]="date">
+            </date-selector>
+            <time-selector *ngIf="timeSelectorVisible"
+                           [(ngModel)]="time">
+            </time-selector>
+        </div>
     `,
     styleUrls: ["./datepicker.css"]
 })
 export class DatePickerPanel implements ControlValueAccessor {
-    @Input("type") mode: DatePickerMode = "date";
-    @Output() dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+    @Input("type")
+    public mode: "date" | "datetime" | "time" = "date";
+    @Output()
+    public dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+    @Output()
+    public dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
+    @Output()
+    public modeChanged: EventEmitter<any> = new EventEmitter<any>();
 
-    @Output() dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
-    @Output() modeChanged: EventEmitter<any> = new EventEmitter<any>();
+    private _dateValue: Date;
+    private _timeValue: Date;
+    private _onChange: (value: any) => void;
 
-    get dateSelectorVisible(): boolean {
+    public get dateSelectorVisible(): boolean {
         return this.mode === "date" || this.mode === "datetime";
     }
 
-    get timeSelectorVisible(): boolean {
+    public get timeSelectorVisible(): boolean {
         return this.mode === "time" || this.mode === "datetime";
     }
 
-    get date(): Date {
+    public get date(): Date {
         return this._dateValue;
     }
 
-    set date(value: Date) {
+    public set date(value: Date) {
         this._dateValue = value;
         this.pushChangedValue();
     }
 
-    get time(): Date {
+    public get time(): Date {
         return this._timeValue;
     }
 
-    set time(value: Date) {
+    public set time(value: Date) {
         this._timeValue = value;
         this.pushChangedValue();
     }
 
-    writeValue(value: any): void {
+    public writeValue(value: any): void {
         let parsedValue = local(value);
         if (!parsedValue.isValid()) {
             parsedValue = local();
@@ -62,11 +69,11 @@ export class DatePickerPanel implements ControlValueAccessor {
         this.updateControls(parsedValue);
     }
 
-    registerOnChange(fn: any): void {
+    public registerOnChange(fn: any): void {
         this._onChange = fn;
     }
 
-    registerOnTouched(fn: any): void {}
+    public registerOnTouched(fn: any): void {}
 
     private updateControls(value: Moment): void {
         this.date = value.toDate();
@@ -87,8 +94,4 @@ export class DatePickerPanel implements ControlValueAccessor {
             this._onChange(result);
         }
     }
-
-    private _dateValue: Date;
-    private _timeValue: Date;
-    private _onChange: (value: any) => void;
 }

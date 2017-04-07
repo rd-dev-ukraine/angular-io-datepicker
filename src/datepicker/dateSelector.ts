@@ -15,9 +15,9 @@ export type DateSelectorMode = "day" | "month" | "year" | "decade";
     template: `
         <div class="date-selector">
             <day-selector [hidden]="mode !== 'day'"
-                        [(date)]="displayDate"
-                        (dateSelected)="selectedDate=$event"
-                        (modeChanged)=" mode='month' ">
+                          [(date)]="displayDate"
+                          (dateSelected)="selectedDate=$event"
+                          (modeChanged)=" mode='month' ">
             </day-selector>
             <month-selector [hidden]="mode !== 'month' "
                             [(date)]="displayDate"
@@ -25,13 +25,13 @@ export type DateSelectorMode = "day" | "month" | "year" | "decade";
                             (modeChanged)=" mode='year' ">
             </month-selector>
             <year-selector [hidden]="mode !== 'year' "
-                            [(date)]="displayDate"
-                            (dateSelected)="displayDate=$event; mode = 'month'; "
-                            (modeChanged)=" mode='decade' ">
+                           [(date)]="displayDate"
+                           (dateSelected)="displayDate=$event; mode = 'month'; "
+                           (modeChanged)=" mode='decade' ">
             </year-selector>
             <decade-selector [hidden]="mode !== 'decade' "
-                            [(date)]="displayDate"
-                            (dateSelected)="displayDate=$event; mode = 'year'; ">
+                             [(date)]="displayDate"
+                             (dateSelected)="displayDate=$event; mode = 'year'; ">
             </decade-selector>
         </div>
     `

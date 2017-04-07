@@ -2,11 +2,9 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { OverlayModule } from "angular-io-overlay/src/overlay/";
+import { OverlayModule } from "angular-io-overlay";
 
-import { PeriodSwitch, DaySelector, DecadeSelector, HourSelector, TimeComponentScroller,
-    MinuteSelector, MonthSelector, TimeComponentSelector, YearSelector
-} from "./selectors/index";
+import { DaySelector, DecadeSelector, HourSelector, MinuteSelector, MonthSelector, PeriodSwitch, TimeComponentScroller, TimeComponentSelector, YearSelector } from "./selectors/index";
 import { DatePicker, DatePickerPanel, DateSelectorComponent, TimeSelector } from "./index";
 
 
@@ -24,6 +22,7 @@ import { DatePicker, DatePickerPanel, DateSelectorComponent, TimeSelector } from
         MinuteSelector,
         MonthSelector,
         TimeComponentSelector,
+        TimeComponentScroller,
         YearSelector,
         DatePickerPanel,
         DateSelectorComponent,
@@ -38,4 +37,4 @@ import { DatePicker, DatePickerPanel, DateSelectorComponent, TimeSelector } from
         DatePickerPanel
     ]
 })
-export class DatePickerModule { }
+export class DatePickerModule {}

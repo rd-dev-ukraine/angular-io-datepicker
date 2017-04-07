@@ -1,28 +1,27 @@
 import { EventEmitter } from "@angular/core";
-
 import { Moment } from "moment";
 
 import { local } from "../common";
 import { areDatesEqual, decade } from "../dateUtils";
 
 export abstract class AbstractSelector {
-    date: Moment;
-    dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
-    dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
-    modeChanged: EventEmitter<any> = new EventEmitter<any>();
+    public date: Moment;
+    public dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+    public dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
+    public modeChanged: EventEmitter<any> = new EventEmitter<any>();
 
     /**
-     * Returns cloned not-null selected value. 
+     * Returns cloned not-null selected value.
      */
-    protected get value(): Moment {
+    public get value(): Moment {
         return (this.date || local()).clone();
     }
 
-    protected set value(val: Moment) {
+    public set value(val: Moment) {
         this.dateChange.emit(val ? val.clone() : null);
     }
 
-    protected isSelected(date: Moment): boolean {
+    public isSelected(date: Moment): boolean {
         if (!date) {
             throw new Error("Date is required.");
         }
@@ -34,7 +33,7 @@ export abstract class AbstractSelector {
         return areDatesEqual(this.value, date);
     }
 
-    protected formatDecade(value: Moment): string {
+    public formatDecade(value: Moment): string {
         const [start, end] = decade(value);
 
         return `${start.format("YYYY")}-${end.format("YYYY")}`;
