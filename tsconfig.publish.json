@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES5",
+    "lib": [
+      "es2016",
+      "es2015.promise",
+      "dom"
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": true
+  },
+  "file": [
+    "src/index.ts",
+    "src/overlay.module.ts",
+    "src/overlayComponent.ts",
+    "src/overlayHostComponent.ts",
+    "src/overlayService.ts",
+    "src/positioning.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/datepicker",
+    "src/app",
+    "src/environments",
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/typings.d.ts"
+  ]
+}

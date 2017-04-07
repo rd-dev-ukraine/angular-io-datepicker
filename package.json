@@ -1,38 +1,54 @@
 {
   "name": "angular-io-datepicker",
-  "version": "0.0.0",
+  "version": "1.2.1",
+  "description": "Overlay component that allows open a component in popup for angular2",
+  "main": "./src/datepicker/index.js",
+  "typings": "./src/datepicker/index.d.ts",
+  "keywords": [
+    "angular",
+    "angular2",
+    "overlay",
+    "popup",
+    "component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rd-dev-ukraine/angular-io-overlay"
+  },
+  "bugs": {
+    "url": "https://github.com/rd-dev-ukraine/angular-io-overlay/issues"
+  },
+  "homepage": "https://github.com/rd-dev-ukraine/angular-io-overlay#readme",
+  "author": "Sergey Tokarev <sergey.tokarev@rd-dev.net>",
   "license": "MIT",
-  "angular-cli": {},
   "scripts": {
     "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
-    "pree2e": "webdriver-manager update"
+    "deploy": "ng build --prod --base-href \"angular-io-overlay\" && ngh",
+    "prepub": "tsc -p tsconfig.publish.json"
   },
-  "private": true,
   "dependencies": {
-    "@angular/common": "~2.1.0",
-    "@angular/compiler": "~2.1.0",
-    "@angular/core": "~2.1.0",
-    "@angular/forms": "~2.1.0",
-    "@angular/http": "~2.1.0",
-    "@angular/platform-browser": "~2.1.0",
-    "@angular/platform-browser-dynamic": "~2.1.0",
-    "@angular/router": "~3.1.0",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "angular-io-overlay": "^1.2.5",
     "core-js": "^2.4.1",
-    "debug": "^2.3.2",
     "moment": "^2.14.1",
-    "pojo-fluent-validator": "^1.1.7",
-    "rxjs": "5.0.0-beta.12",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.19-3",
-    "codelyzer": "1.0.0-beta.1",
-    "ts-node": "1.2.1",
-    "tslint": "3.13.0",
-    "typescript": "~2.0.3",
-    "webdriver-manager": "10.2.5"
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@types/node": "~6.0.60",
+    "angular-io-overlay": "^1.2.4",
+    "codelyzer": "~2.0.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
   }
 }

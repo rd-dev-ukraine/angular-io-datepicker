@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+    selector: "app-root",
+    templateUrl: "./app.component.html"
 })
-export class AppComponent {
-  form: FormGroup;
+export class AppComponent implements OnInit {
+    public form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+    public constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      date: ''
-    });
-  }
+    public ngOnInit(): void {
+        this.form = this.fb.group({ date: "" });
+    }
 }
