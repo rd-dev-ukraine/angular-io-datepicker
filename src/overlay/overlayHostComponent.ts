@@ -1,10 +1,11 @@
 import {
-    Component, ComponentRef, ComponentFactoryResolver, OnInit, Type, ViewChild, ViewContainerRef,
-    ChangeDetectorRef
+    Component, ComponentRef, ComponentFactoryResolver, OnInit, Type, ViewChild, ViewContainerRef, ElementRef
 } from "@angular/core";
 
 import { OverlayComponent } from "./overlayComponent";
 import { OverlayHost, OverlayService, PopupOptions } from "./overlayService";
+
+import { Alignment, Point, position, Rect } from "./positioning";
 
 @Component({
     selector: "overlay-host",
@@ -17,8 +18,7 @@ export class OverlayHostComponent implements OverlayHost, OnInit {
 
     constructor(
         private overlayService: OverlayService,
-        private componentFactoryResolver: ComponentFactoryResolver,
-        private cdRef: ChangeDetectorRef
+        private componentFactoryResolver: ComponentFactoryResolver
     ) {}
 
     openComponentInPopup<T>(componentType: Type<T>, options: PopupOptions): Promise<ComponentRef<T>> {
@@ -27,8 +27,9 @@ export class OverlayHostComponent implements OverlayHost, OnInit {
             .then(factory => this.container.createComponent(factory))
             .then((overlayRef: ComponentRef<OverlayComponent>) => {
                 return overlayRef.instance
-                    .addComponent<T>(componentType, options.alignWithElement, options.alignment)
+                    .addComponent<T>(componentType)
                     .then(result => {
+                        this.alignContainer(overlayRef.instance, options.alignWithElement, options.alignment);
                         result.onDestroy(() => {
                             overlayRef.destroy();
                         });
@@ -79,5 +80,67 @@ export class OverlayHostComponent implements OverlayHost, OnInit {
         }
 
         return this.isDOMParent(element.parentElement, parent);
+    }
+
+    private alignContainer(elRef: OverlayComponent, targetRef: ElementRef, alignment: Alignment): void {
+        const element: HTMLElement = elRef.elementRef.nativeElement;
+
+        if (!element || (targetRef && !targetRef.nativeElement)) {
+            return;
+        }
+        const elementRect = this.rectFromElement(element);
+
+        const targetRect = targetRef ? this.rectFromElement(targetRef.nativeElement) : this.rectFromWindow();
+
+        elRef.positionFixed = !targetRef;
+
+        if (!elementRect || !targetRect) {
+            return;
+        }
+
+        const newElementRect = position(elementRect, targetRect, alignment);
+
+        const offsetLeft = element.offsetLeft + newElementRect.left - elementRect.left;
+        const offsetTop = element.offsetTop + newElementRect.top - elementRect.top;
+
+        elRef.left = offsetLeft;
+        elRef.top = offsetTop;
+    }
+
+    private rectFromElement(element: HTMLElement): Rect {
+        if (!element) {
+            throw new Error("Element is undefined.");
+        }
+
+        let position: Point = {
+            left: 0,
+            top: 0
+        };
+
+        let current = element;
+
+        do {
+            position.left += current.offsetLeft;
+            position.top += current.offsetTop;
+            current = <HTMLElement>current.offsetParent;
+        }
+        while (current);
+
+
+        return {
+            left: position.left,
+            top: position.top,
+            width: element.offsetWidth,
+            height: element.offsetHeight
+        };
+    }
+
+    private rectFromWindow(): Rect {
+        return {
+            left: window.scrollX,
+            top: window.scrollY,
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
     }
 }

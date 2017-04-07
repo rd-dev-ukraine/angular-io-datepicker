@@ -1,10 +1,8 @@
 export const enum AlignType {
-    Near = 1,
     Left = 1,
     Top = 1,
     Center = 2,
     Middle = 2,
-    Far = 3,
     Right = 3,
     Bottom = 3
 }
@@ -77,7 +75,6 @@ function positionElement(element: Rect, target: Rect, alignment: Alignment): Rec
         left: targetPoint.left - elementPoint.left,
         top: targetPoint.top - elementPoint.top
     };
-
     return {
         left: element.left + offset.left,
         top: element.top + offset.top,
@@ -87,7 +84,7 @@ function positionElement(element: Rect, target: Rect, alignment: Alignment): Rec
 }
 
 
-export function position(element: Rect, target: Rect, viewport: Rect, ...positions: Alignment[]): Rect {
+export function position(element: Rect, target: Rect, ...positions: Alignment[]): Rect {
     positions = positions || [defaultAlign];
     return positionElement(element, target, positions[0]);
 }
