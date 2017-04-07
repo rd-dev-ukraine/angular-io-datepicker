@@ -74,15 +74,15 @@ const defaultFormat: { [type: string]: string; } = {
                    type="text" />
             <button [hidden]="!showClearButton"
                     [disabled]="disabled"
-                    (click)="clear()" 
-                    class="datepicker-actions__button" 
+                    (click)="clear()"
+                    class="datepicker-actions__button"
                     type="button">
                 <span class="datepicker__buttonIcon datepicker__buttonIcon-close"></span>
             </button>
             <button [disabled]="disabled"
                     (click)="togglePopup()"
-                    (mousedown)="$event.stopPropagation()" 
-                    class="datepicker-actions__button" 
+                    (mousedown)="$event.stopPropagation()"
+                    class="datepicker-actions__button"
                     type="button">
                 <span class="datepicker__buttonIcon datepicker__buttonIcon-calendar"></span>
             </button>
@@ -102,6 +102,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     @Input() showClearButton: boolean = true;
     @Input() format: string;
     @Input() disabled: boolean;
+    @Input() align: any;
 
 
     constructor(private overlayService: OverlayService) {}
@@ -182,16 +183,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         this.overlayService.openComponentInPopup<DatePickerPanel>(
             DatePickerPanel, {
                 alignWithElement: this.datePickerContainer,
-                alignment: {
-                    element: {
-                        horizontal: AlignType.Left,
-                        vertical: AlignType.Top
-                    },
-                    target: {
-                        horizontal: AlignType.Left,
-                        vertical: AlignType.Bottom
-                    }
-                },
+                alignment: this.align,
                 closeOnClick: true
             }
         ).then(c => {
