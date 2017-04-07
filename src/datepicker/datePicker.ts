@@ -2,7 +2,7 @@ import { ControlValueAccessor, AbstractControl } from "@angular/forms";
 import { Component, ComponentRef, ElementRef, Input, ViewChild, OnInit } from "@angular/core";
 import { Moment, utc } from "moment";
 
-import { AlignType, OverlayService } from "../overlay";
+import { OverlayService } from "angular-io-overlay/src/overlay/";
 
 import { ControlValueAccessorProviderFactory, ValidatorProviderFactory, DatePickerMode, local, MomentParseFunction, OnChangeHandler, OnTouchedHandler } from "./common";
 import { DatePickerPanel } from "./datePickerPanel";

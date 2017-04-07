@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { OverlayModule } from "../overlay/index";
+import { OverlayModule } from "angular-io-overlay/src/overlay/";
 
 import { PeriodSwitch, DaySelector, DecadeSelector, HourSelector, TimeComponentScroller,
     MinuteSelector, MonthSelector, TimeComponentSelector, YearSelector
