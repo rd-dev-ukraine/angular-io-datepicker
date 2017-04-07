@@ -21,7 +21,7 @@ import { ControlValueAccessorProviderFactory, DatePickerMode, local } from "./co
     styleUrls: ["./datepicker.css"]
 })
 export class DatePickerPanel implements ControlValueAccessor {
-    @Input("type") mode: DatePickerMode = "date"; // todo зачем дефолт
+    @Input("type") mode: DatePickerMode = "date";
     @Output() dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
 
     @Output() dateSelected: EventEmitter<Moment> = new EventEmitter<Moment>();
@@ -66,9 +66,7 @@ export class DatePickerPanel implements ControlValueAccessor {
         this._onChange = fn;
     }
 
-    registerOnTouched(fn: any): void {
-        // Do nothing
-    }
+    registerOnTouched(fn: any): void {}
 
     private updateControls(value: Moment): void {
         this.date = value.toDate();
