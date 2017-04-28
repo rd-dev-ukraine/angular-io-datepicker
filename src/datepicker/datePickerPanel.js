@@ -104,7 +104,9 @@ DatePickerPanel = DatePickerPanel_1 = __decorate([
         selector: "datepicker-panel",
         providers: [common_1.ControlValueAccessorProviderFactory(DatePickerPanel_1)],
         template: "\n        <div class=\"datepicker-panel\">\n            <date-selector *ngIf=\"dateSelectorVisible\"\n                           [(ngModel)]=\"date\">\n            </date-selector>\n            <time-selector *ngIf=\"timeSelectorVisible\"\n                           [(ngModel)]=\"time\">\n            </time-selector>\n        </div>\n    ",
-        styleUrls: ["./datepicker.css"]
+        styles: [
+            ".datepicker-panel{display:flex;overflow:hidden;max-width:17em;margin-top:1em;padding:1em;border:1px solid #ccc;border-radius:4px;background:#fff;flex-flow:column nowrap;justify-content:center;align-items:center}"
+        ]
     })
 ], DatePickerPanel);
 exports.DatePickerPanel = DatePickerPanel;

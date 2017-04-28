@@ -57,7 +57,9 @@ __decorate([
 TimeComponentSelector = __decorate([
     core_1.Component({
         selector: "time-component-selector",
-        styleUrls: ["../datepicker.css"],
+        styles: [
+            ".time-component-selector__am-pm{cursor:pointer}.time-component-selector{font-size:2em;display:flex;flex-flow:row nowrap;align-items:center}.time-component-selector__component{padding-right:.5em}"
+        ],
         template: "\n        <div class=\"time-component-selector\">\n            <time-component-scroller class=\"time-component-selector__component\"\n                                     [value]=\"date\"\n                                     [format]=\" 'hh' \"\n                                     (up)=\"plusHour()\"\n                                     (down)=\"minusHour()\"\n                                     (selectValue)=\"selectHour.emit($event)\">\n            </time-component-scroller>\n            <time-component-scroller class=\"time-component-selector__component\"\n                                     [value]=\"date\"\n                                     [format]=\" 'mm' \"\n                                     (up)=\"plusMinute()\"\n                                     (down)=\"minusMinute()\"\n                                     (selectValue)=\"selectMinute.emit($event)\">\n            </time-component-scroller>\n            <span class=\"time-component-selector__am-pm\"\n                  (click)=\"togglePmAm()\">\n                {{ date?.format(\"A\") }}\n            </span>\n        </div>\n    "
     })
 ], TimeComponentSelector);

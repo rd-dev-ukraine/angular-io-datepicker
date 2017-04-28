@@ -53,7 +53,6 @@ TimeSelector = TimeSelector_1 = __decorate([
     core_1.Component({
         selector: "time-selector",
         providers: [common_1.ControlValueAccessorProviderFactory(TimeSelector_1)],
-        styleUrls: ["./datepicker.css"],
         template: "\n        <time-component-selector *ngIf=\" mode === 'time' \"\n                                 [(date)]=\"selectedDate\"\n                                 (selectHour)=\" mode = 'hour' \"\n                                 (selectMinute)=\" mode= 'minute' \">\n        </time-component-selector>\n        <hour-selector *ngIf=\" mode === 'hour' \"\n                       [(date)]=\"selectedDate\">\n        </hour-selector>\n        <minute-selector *ngIf=\" mode === 'minute' \"\n                         [(date)]=\"selectedDate\">\n        </minute-selector>\n    "
     })
 ], TimeSelector);

@@ -76,7 +76,9 @@ __decorate([
 DecadeSelector = __decorate([
     core_1.Component({
         selector: "decade-selector",
-        styleUrls: ["../datepicker.css"],
+        styles: [
+            ".date-set{line-height:2em;text-align:center;vertical-align:middle}.date-set.hidden{display:none}.date-set__dates{display:flex;flex-direction:row;margin:0;padding:0;list-style-type:none;flex-wrap:wrap;justify-content:space-between;align-items:stretch}.date-set__date{cursor:pointer;flex-grow:1;flex-shrink:0;flex-basis:33%}.date-set__date.selected{background:#eee}"
+        ],
         template: "\n        <div class=\"date-set\">\n            <period-switch [period]=\"formatCentury()\"\n                           (prev)=\"prev()\"\n                           (next)=\"next()\"\n                           (modeChange)=\"modeChanged.emit($event)\">\n            </period-switch>\n            <ul class=\"date-set__dates\">\n                <li *ngFor=\"let decade of decades()\"\n                    [ngClass]=\"\n                {\n                     'date-set__date': true, \n                     'selected': isDecadeSelected(decade) \n                }\"\n                    (mousedown)=\"dateSelected.emit(decade); $event.preventDefault(); $event.stopPropagation();\">\n                    {{ formatDecade(decade) }}\n                </li>\n            </ul>\n        </div>\n    "
     })
 ], DecadeSelector);

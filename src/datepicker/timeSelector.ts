@@ -10,7 +10,6 @@ export type TimeSelectorMode = "time" | "hour" | "minute";
 @Component({
     selector: "time-selector",
     providers: [ControlValueAccessorProviderFactory(TimeSelector)],
-    styleUrls: ["./datepicker.css"],
     template: `
         <time-component-selector *ngIf=" mode === 'time' "
                                  [(date)]="selectedDate"

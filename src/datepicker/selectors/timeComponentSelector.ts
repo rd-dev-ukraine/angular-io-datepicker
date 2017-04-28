@@ -4,7 +4,9 @@ import { Moment } from "moment";
 
 @Component({
     selector: "time-component-selector",
-    styleUrls: ["../datepicker.css"],
+    styles: [
+        `.time-component-selector__am-pm{cursor:pointer}.time-component-selector{font-size:2em;display:flex;flex-flow:row nowrap;align-items:center}.time-component-selector__component{padding-right:.5em}`
+    ],
     template: `
         <div class="time-component-selector">
             <time-component-scroller class="time-component-selector__component"

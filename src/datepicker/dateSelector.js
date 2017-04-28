@@ -57,7 +57,9 @@ DateSelectorComponent = DateSelectorComponent_1 = __decorate([
     core_1.Component({
         selector: "date-selector",
         providers: [common_1.ControlValueAccessorProviderFactory(DateSelectorComponent_1)],
-        styleUrls: ["./datepicker.css"],
+        styles: [
+            ".date-selector{line-height:2em;text-align:center;vertical-align:middle}"
+        ],
         template: "\n        <div class=\"date-selector\">\n            <day-selector [hidden]=\"mode !== 'day'\"\n                          [(date)]=\"displayDate\"\n                          (dateSelected)=\"selectedDate=$event\"\n                          (modeChanged)=\" mode='month' \">\n            </day-selector>\n            <month-selector [hidden]=\"mode !== 'month' \"\n                            [(date)]=\"displayDate\"\n                            (dateSelected)=\"displayDate=$event; mode = 'day'; \"\n                            (modeChanged)=\" mode='year' \">\n            </month-selector>\n            <year-selector [hidden]=\"mode !== 'year' \"\n                           [(date)]=\"displayDate\"\n                           (dateSelected)=\"displayDate=$event; mode = 'month'; \"\n                           (modeChanged)=\" mode='decade' \">\n            </year-selector>\n            <decade-selector [hidden]=\"mode !== 'decade' \"\n                             [(date)]=\"displayDate\"\n                             (dateSelected)=\"displayDate=$event; mode = 'year'; \">\n            </decade-selector>\n        </div>\n    "
     })
 ], DateSelectorComponent);

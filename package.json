@@ -1,6 +1,6 @@
 {
   "name": "angular-io-datepicker",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Datepicker component for angular2",
   "main": "./src/datepicker/index.js",
   "typings": "./src/datepicker/index.d.ts",
@@ -47,10 +47,9 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "^1.0.1",
     "@angular/compiler-cli": "^4.0.0",
     "@types/node": "~6.0.60",
-    "angular-io-overlay": "^1.2.4",
     "codelyzer": "~2.0.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",

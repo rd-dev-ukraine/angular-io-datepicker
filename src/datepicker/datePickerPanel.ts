@@ -18,7 +18,9 @@ import { ControlValueAccessorProviderFactory, local } from "./common";
             </time-selector>
         </div>
     `,
-    styleUrls: ["./datepicker.css"]
+    styles: [
+        `.datepicker-panel{display:flex;overflow:hidden;max-width:17em;margin-top:1em;padding:1em;border:1px solid #ccc;border-radius:4px;background:#fff;flex-flow:column nowrap;justify-content:center;align-items:center}`
+    ]
 })
 export class DatePickerPanel implements ControlValueAccessor {
     @Input("type")

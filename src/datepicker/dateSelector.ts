@@ -11,7 +11,9 @@ export type DateSelectorMode = "day" | "month" | "year" | "decade";
 @Component({
     selector: "date-selector",
     providers: [ControlValueAccessorProviderFactory(DateSelectorComponent)],
-    styleUrls: ["./datepicker.css"],
+    styles: [
+        `.date-selector{line-height:2em;text-align:center;vertical-align:middle}`
+    ],
     template: `
         <div class="date-selector">
             <day-selector [hidden]="mode !== 'day'"
