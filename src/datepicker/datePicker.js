@@ -70,6 +70,7 @@ var DatePicker = DatePicker_1 = (function () {
     function DatePicker(overlayService) {
         this.overlayService = overlayService;
         this.mode = "date";
+        this.displayDateMode = "day";
         this.showClearButton = true;
         this.inputText = "";
     }
@@ -137,6 +138,8 @@ var DatePicker = DatePicker_1 = (function () {
                 _this._popupRef = null;
             });
             c.instance.mode = _this.mode;
+            console.log(_this.displayDateMode);
+            c.instance.displayDateMode = _this.displayDateMode;
             c.instance.writeValue(val);
             c.instance.registerOnChange(function (v) { return _this.raiseOnChange(v); });
         });
@@ -197,6 +200,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], DatePicker.prototype, "mode", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], DatePicker.prototype, "displayDateMode", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)

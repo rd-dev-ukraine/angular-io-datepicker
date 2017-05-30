@@ -29,7 +29,7 @@
   "scripts": {
     "start": "ng serve",
     "deploy": "ng build --prod --base-href \"angular-io-datepicker\" && ngh",
-    "prepublish": "tsc -p tsconfig.publish.json"
+    "build": "tsc -p tsconfig.publish.json"
   },
   "dependencies": {
     "@angular/common": "^4.0.0",
@@ -40,7 +40,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "angular-io-overlay": "^1.2.5",
+    "angular-io-overlay": "^1.2.7",
     "core-js": "^2.4.1",
     "moment": "^2.14.1",
     "rxjs": "^5.1.0",

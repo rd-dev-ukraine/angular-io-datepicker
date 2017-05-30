@@ -33,7 +33,7 @@ export type DateSelectorMode = "day" | "month" | "year" | "decade";
             </year-selector>
             <decade-selector [hidden]="mode !== 'decade'"
                              [(date)]="displayDate"
-                             (dateSelected)="selectedDate=$event; displayDateMode !== 'decade' && mode = 'year'; ">
+                             (dateSelected)="selectedDate=$event; mode = 'year'; ">
             </decade-selector>
         </div>
     `

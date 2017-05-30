@@ -14,6 +14,7 @@ var common_1 = require("./common");
 var DatePickerPanel = DatePickerPanel_1 = (function () {
     function DatePickerPanel() {
         this.mode = "date";
+        this.displayDateMode = "day";
         this.dateChange = new core_1.EventEmitter();
         this.dateSelected = new core_1.EventEmitter();
         this.modeChanged = new core_1.EventEmitter();
@@ -88,6 +89,10 @@ __decorate([
     __metadata("design:type", String)
 ], DatePickerPanel.prototype, "mode", void 0);
 __decorate([
+    core_1.Input("displayDateMode"),
+    __metadata("design:type", String)
+], DatePickerPanel.prototype, "displayDateMode", void 0);
+__decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], DatePickerPanel.prototype, "dateChange", void 0);
@@ -103,7 +108,7 @@ DatePickerPanel = DatePickerPanel_1 = __decorate([
     core_1.Component({
         selector: "datepicker-panel",
         providers: [common_1.ControlValueAccessorProviderFactory(DatePickerPanel_1)],
-        template: "\n        <div class=\"datepicker-panel\">\n            <date-selector *ngIf=\"dateSelectorVisible\"\n                           [(ngModel)]=\"date\">\n            </date-selector>\n            <time-selector *ngIf=\"timeSelectorVisible\"\n                           [(ngModel)]=\"time\">\n            </time-selector>\n        </div>\n    ",
+        template: "\n        <div class=\"datepicker-panel\">\n            <date-selector *ngIf=\"dateSelectorVisible\"\n                           [displayDateMode]=\"displayDateMode\"\n                           [(ngModel)]=\"date\">\n            </date-selector>\n            <time-selector *ngIf=\"timeSelectorVisible\"\n                           [(ngModel)]=\"time\">\n            </time-selector>\n        </div>\n    ",
         styles: [
             ".datepicker-panel{display:flex;overflow:hidden;max-width:17em;margin-top:1em;padding:1em;border:1px solid #ccc;border-radius:4px;background:#fff;flex-flow:column nowrap;justify-content:center;align-items:center}"
         ]
