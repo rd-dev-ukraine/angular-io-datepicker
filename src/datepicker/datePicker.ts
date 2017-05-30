@@ -120,6 +120,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     @Input()
     public mode: "date" | "datetime" | "time" = "date";
     @Input()
+    public displayDateMode: "day" | "month" | "year" = "day";
+    @Input()
     public showClearButton: boolean = true;
     @Input()
     public format: string;
@@ -213,6 +215,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
             });
 
             c.instance.mode = this.mode;
+            console.log(this.displayDateMode);
+            c.instance.displayDateMode = this.displayDateMode;
             c.instance.writeValue(val);
             c.instance.registerOnChange((v: any) => this.raiseOnChange(v));
         });

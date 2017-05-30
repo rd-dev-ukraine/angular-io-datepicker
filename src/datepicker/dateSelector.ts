@@ -1,5 +1,5 @@
 import { ControlValueAccessor } from "@angular/forms";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Moment } from "moment";
 
 import { ControlValueAccessorProviderFactory, local, OnChangeHandler } from "./common";
@@ -19,29 +19,37 @@ export type DateSelectorMode = "day" | "month" | "year" | "decade";
             <day-selector [hidden]="mode !== 'day'"
                           [(date)]="displayDate"
                           (dateSelected)="selectedDate=$event"
-                          (modeChanged)=" mode='month' ">
+                          (modeChanged)="mode='month'">
             </day-selector>
-            <month-selector [hidden]="mode !== 'month' "
+            <month-selector [hidden]="mode !== 'month'"
                             [(date)]="displayDate"
-                            (dateSelected)="displayDate=$event; mode = 'day'; "
-                            (modeChanged)=" mode='year' ">
+                            (dateSelected)="selectedDate=$event; displayDateMode !== 'month' && mode = 'day'; "
+                            (modeChanged)="mode='year'">
             </month-selector>
-            <year-selector [hidden]="mode !== 'year' "
+            <year-selector [hidden]="mode !== 'year'"
                            [(date)]="displayDate"
-                           (dateSelected)="displayDate=$event; mode = 'month'; "
+                           (dateSelected)="selectedDate=$event; displayDateMode !== 'year' && mode = 'month'; "
                            (modeChanged)=" mode='decade' ">
             </year-selector>
-            <decade-selector [hidden]="mode !== 'decade' "
+            <decade-selector [hidden]="mode !== 'decade'"
                              [(date)]="displayDate"
-                             (dateSelected)="displayDate=$event; mode = 'year'; ">
+                             (dateSelected)="selectedDate=$event; displayDateMode !== 'decade' && mode = 'year'; ">
             </decade-selector>
         </div>
     `
 })
 export class DateSelectorComponent implements ControlValueAccessor {
-    mode: DateSelectorMode = "day";
+    @Input()
+    public displayDateMode: "day" | "month" | "year";
 
-    displayDate: Moment = local();
+    public mode: DateSelectorMode;
+    public displayDate: Moment = local();
+
+    public ngOnChanges(changes: any) {
+        if (changes.displayDateMode) {
+            this.mode = this.displayDateMode;
+        }
+    }
 
     get selectedDate(): Moment {
         if (!this._selectedDate) {
@@ -62,7 +70,7 @@ export class DateSelectorComponent implements ControlValueAccessor {
         }
     }
 
-    writeValue(val: any): void {
+    public writeValue(val: any): void {
         if (val === null || val === undefined) {
             this._selectedDate = null;
         } else {
@@ -78,16 +86,15 @@ export class DateSelectorComponent implements ControlValueAccessor {
         this.displayDate = this.selectedDate || local();
     }
 
-    registerOnChange(fn: OnChangeHandler): void {
+    public registerOnChange(fn: OnChangeHandler): void {
         this._onChange = fn;
     }
 
-    registerOnTouched(fn: Function): void {
+    public registerOnTouched(fn: Function): void {
         this._onTouched = fn;
     }
 
     private _selectedDate: Moment;
     private _onChange: OnChangeHandler;
     private _onTouched: Function;
-
 }

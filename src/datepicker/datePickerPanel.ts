@@ -11,6 +11,7 @@ import { ControlValueAccessorProviderFactory, local } from "./common";
     template: `
         <div class="datepicker-panel">
             <date-selector *ngIf="dateSelectorVisible"
+                           [displayDateMode]="displayDateMode"
                            [(ngModel)]="date">
             </date-selector>
             <time-selector *ngIf="timeSelectorVisible"
@@ -25,6 +26,8 @@ import { ControlValueAccessorProviderFactory, local } from "./common";
 export class DatePickerPanel implements ControlValueAccessor {
     @Input("type")
     public mode: "date" | "datetime" | "time" = "date";
+    @Input("displayDateMode")
+    public displayDateMode: "day" | "month" | "year" = "day";
     @Output()
     public dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
     @Output()

@@ -63,3 +63,15 @@
         <p class="alert" *ngIf="!form7.valid">Form is invalid!</p>
     </form>
 </div>
+<div class="example">
+    <form #form8="ngForm">
+        <date-picker displayDateMode="month" format="MMMM YYYY" ngModel name="date"></date-picker>
+        <pre><code>displayDateMode="month" format="MMMM YYYY"</code></pre>
+    </form>
+</div>
+<div class="example">
+    <form #form9="ngForm">
+        <date-picker displayDateMode="year" format="YYYY" ngModel name="date"></date-picker>
+        <pre><code>displayDateMode="year" format="YYYY"</code></pre>
+    </form>
+</div>
