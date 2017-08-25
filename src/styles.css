@@ -59,3 +59,7 @@ code {
 .alert {
     color: red;
 }
+
+.test-input-class {
+    border: 1px #6e6e6e dashed !important;
+}

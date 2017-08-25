@@ -91,6 +91,7 @@ Options can be passed to an element via html attributes:
 |`disabled`       |boolean|`false`                                                          |Disables controls                                                                  |
 |`showClearButton`|boolean|`true`                                                           |Show or not clear input button                                                     |
 |`format`         |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides [moment](http://momentjs.com/docs/#/displaying/ )|
+|`inputClass`     |string | `''`                                                            |Additional css-class to be added to `input` element                                |
 
 
 ## License
