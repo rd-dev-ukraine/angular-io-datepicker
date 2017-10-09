@@ -223,6 +223,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], DatePicker.prototype, "align", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], DatePicker.prototype, "closeBySelection", void 0);
 DatePicker = DatePicker_1 = __decorate([
     core_1.Component({
         selector: "date-picker",
