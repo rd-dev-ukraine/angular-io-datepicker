@@ -113,6 +113,9 @@ var DatePicker = DatePicker_1 = (function () {
             this.updateControlText(value);
         }
         this.onChange && this.onChange(this.convertValue(parsed));
+        if (this.closeBySelection && this.mode === 'date')
+            this.closePopup();
+    
     };
     DatePicker.prototype.togglePopup = function () {
         if (this._popupRef) {

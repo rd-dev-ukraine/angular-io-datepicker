@@ -52,6 +52,7 @@ export declare class DatePicker implements ControlValueAccessor, OnInit {
     format: string;
     disabled: boolean;
     align: any;
+    closeBySelection: boolean;
     onChange: OnChangeHandler;
     onTouched: OnTouchedHandler;
     inputText: string;
