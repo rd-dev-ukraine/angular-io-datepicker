@@ -1,6 +1,6 @@
 <div class="example">
     <form #form1="ngForm">
-        <date-picker ngModel name="date"></date-picker>
+        <date-picker ngModel name="date" [closeBySelection]="true"></date-picker>
         <pre>Template-Driven Form = {{ form1.value | json }}</pre>
         <pre><code>ngModel name="date"</code></pre>
         <p class="alert" *ngIf="!form1.valid">Form is invalid!</p>

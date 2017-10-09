@@ -85,13 +85,13 @@ And then add `date-picker` element to your form:
 
 Options can be passed to an element via html attributes:
 
-|Property         |Type   |Default                                                          |Description                                                                        |
-| :-------------- | :---- | :-------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
-|`mode`           |string |`date`                                                           |Changes view mode - date, datetime, time                                           |
-|`disabled`       |boolean|`false`                                                          |Disables controls                                                                  |
-|`showClearButton`|boolean|`true`                                                           |Show or not clear input button                                                     |
-|`format`         |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides [moment](http://momentjs.com/docs/#/displaying/ )|
-
+|Property          |Type   |Default                                                          |Description                                                                        |
+| :--------------- | :---- | :-------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+|`mode`            |string |`date`                                                           |Changes view mode - date, datetime, time                                           |
+|`disabled`        |boolean|`false`                                                          |Disables controls                                                                  |
+|`showClearButton` |boolean|`true`                                                           |Show or not clear input button                                                     |
+|`format`          |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides [moment](http://momentjs.com/docs/#/displaying/ )|
+|`closeBySelection`|boolean|`false`                                                          |Close modal by selection (just when mode=='date') 
 
 ## License
 
