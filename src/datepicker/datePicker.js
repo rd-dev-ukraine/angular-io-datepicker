@@ -113,6 +113,9 @@ var DatePicker = DatePicker_1 = (function () {
             this.updateControlText(value);
         }
         this.onChange && this.onChange(this.convertValue(parsed));
+        if (this.closeBySelection && this.mode === 'date')
+            this.closePopup();
+    
     };
     DatePicker.prototype.togglePopup = function () {
         if (this._popupRef) {
@@ -220,6 +223,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], DatePicker.prototype, "align", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], DatePicker.prototype, "closeBySelection", void 0);
 DatePicker = DatePicker_1 = __decorate([
     core_1.Component({
         selector: "date-picker",
