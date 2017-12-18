@@ -129,6 +129,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     public disabled: boolean;
     @Input()
     public align: any;
+    @Input()
+    public closeBySelection: boolean = false;
 
     public onChange: OnChangeHandler;
     public onTouched: OnTouchedHandler;
@@ -184,6 +186,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
         }
 
         this.onChange && this.onChange(this.convertValue(parsed));
+        if (this.closeBySelection && this.mode === 'date')
+            this.closePopup();
     }
 
     public togglePopup(): void {
