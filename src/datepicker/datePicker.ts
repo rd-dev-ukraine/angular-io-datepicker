@@ -90,7 +90,7 @@ function parserFabric(mode: DatePickerMode, format: string): ParserFunction {
                    (change)="raiseOnChange($event.target.value)"
                    (keyup.tab)="closePopup()"
                    (keyup.esc)="closePopup()"
-                   class="datepicker-actions__input"
+                   [ngClass]="getCSSClasses()"
                    type="text"/>
             <button [hidden]="!showClearButton"
                     [disabled]="disabled"
@@ -131,6 +131,9 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     public align: any;
     @Input()
     public closeBySelection: boolean = false;
+
+    @Input()
+    public inputClass: string;
 
     public onChange: OnChangeHandler;
     public onTouched: OnTouchedHandler;
@@ -219,7 +222,6 @@ export class DatePicker implements ControlValueAccessor, OnInit {
             });
 
             c.instance.mode = this.mode;
-            console.log(this.displayDateMode);
             c.instance.displayDateMode = this.displayDateMode;
             c.instance.writeValue(val);
             c.instance.registerOnChange((v: any) => this.raiseOnChange(v));
@@ -235,6 +237,12 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     public clear(): void {
         this.raiseOnChange("");
+    }
+
+    public getCSSClasses(): string {
+        const defaultClass = "datepicker-actions__input";
+        console.log(defaultClass, this.inputClass);
+        return this.inputClass ? [this.inputClass, defaultClass].join(" ") : defaultClass;
     }
 
     /**
