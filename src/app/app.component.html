@@ -23,6 +23,14 @@
     </form>
 </div>
 <div class="example">
+    <form #form3a="ngForm">
+        <date-picker mode="time" [isMeridiem]="false" format="HH:mm" ngModel name="date"></date-picker>
+        <pre>Template-Driven Form = {{ form3a.value | json }}</pre>
+        <pre><code>mode="time" [isMeridiem]="false" format="HH:mm" ngModel name="date"</code></pre>
+        <p class="alert" *ngIf="!form3a.valid">Form is invalid!</p>
+    </form>
+</div>
+<div class="example">
     <form [formGroup]="form">
         <date-picker mode="time" formControlName="date"></date-picker>
         <pre>Model-Driven Form = {{ form.value | json  }}</pre>

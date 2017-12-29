@@ -15,6 +15,7 @@ import { ControlValueAccessorProviderFactory, local } from "./common";
                            [(ngModel)]="date">
             </date-selector>
             <time-selector *ngIf="timeSelectorVisible"
+                           [isMeridiem]="isMeridiem"
                            [(ngModel)]="time">
             </time-selector>
         </div>
@@ -28,6 +29,8 @@ export class DatePickerPanel implements ControlValueAccessor {
     public mode: "date" | "datetime" | "time" = "date";
     @Input("displayDateMode")
     public displayDateMode: "day" | "month" | "year" = "day";
+    @Input()
+    public isMeridiem: boolean = true;
     @Output()
     public dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
     @Output()

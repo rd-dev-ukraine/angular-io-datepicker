@@ -1,5 +1,5 @@
 import { ControlValueAccessor } from "@angular/forms";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Moment } from "moment";
 
 import { ControlValueAccessorProviderFactory, local, OnChangeHandler, OnTouchedHandler } from "./common";
@@ -12,11 +12,13 @@ export type TimeSelectorMode = "time" | "hour" | "minute";
     providers: [ControlValueAccessorProviderFactory(TimeSelector)],
     template: `
         <time-component-selector *ngIf=" mode === 'time' "
+                                 [isMeridiem]="isMeridiem"
                                  [(date)]="selectedDate"
                                  (selectHour)=" mode = 'hour' "
                                  (selectMinute)=" mode= 'minute' ">
         </time-component-selector>
         <hour-selector *ngIf=" mode === 'hour' "
+                       [isMeridiem]="isMeridiem"
                        [(date)]="selectedDate">
         </hour-selector>
         <minute-selector *ngIf=" mode === 'minute' "
@@ -28,6 +30,9 @@ export class TimeSelector implements ControlValueAccessor {
     private _onChange: OnChangeHandler;
     private _onTouched: OnTouchedHandler;
     private _selectedDate: Moment;
+
+    @Input()
+    public isMeridiem: boolean = true;
 
     public displayDate: Moment = local();
     public mode: TimeSelectorMode = "time";

@@ -7,7 +7,7 @@ import { AbstractSelector } from "./abstractSelector";
 @Component({
     selector: "hour-selector",
     styles: [
-        `.date-set{line-height:2em;text-align:center;vertical-align:middle}.date-set.hidden{display:none}.date-set__dates{display:flex;flex-direction:row;margin:0;padding:0;list-style-type:none;flex-wrap:wrap;justify-content:space-between;align-items:stretch}.date-set__date{cursor:pointer;flex-grow:1;flex-shrink:0;flex-basis:33%}.date-set__date.selected{background:#eee}`
+        `.date-set{line-height:2em;text-align:center;vertical-align:middle}.date-set.hidden{display:none}.date-set__dates{display:flex;flex-direction:row;margin:0;padding:0;list-style-type:none;flex-wrap:wrap;justify-content:space-between;align-items:stretch}.date-set__date{cursor:pointer;flex-grow:1;flex-shrink:0;}.date-set__date.selected{background:#eee}`
     ],
     template: `
         <div class="date-set">
@@ -18,8 +18,9 @@ import { AbstractSelector } from "./abstractSelector";
                      'date-set__date': true, 
                      'selected': isCurrentHour(hour) 
                 }"
+                    [style.flexBasis]="isMeridiem === true ? '33%' : '25%'"
                     (mousedown)="isCurrentHour(hour) ? hour : dateChange.emit(hour); $event.preventDefault(); $event.stopPropagation();">
-                    {{ hour.format("hh") }}
+                    {{ hour.format(isMeridiem === true ? 'hh' : 'HH') }}
                 </li>
             </ul>
         </div>
@@ -28,6 +29,8 @@ import { AbstractSelector } from "./abstractSelector";
 export class HourSelector extends AbstractSelector {
     @Input()
     public date: Moment;
+    @Input()
+    public isMeridiem: boolean = true;
     @Output()
     public dateChange: EventEmitter<Moment>;
     @Output()
@@ -39,9 +42,9 @@ export class HourSelector extends AbstractSelector {
         const startDate = this.value;
         const result: Moment[] = [];
 
-        startDate.hour(startDate.hour() < 12 ? 0 : 12);
+        startDate.hour( (startDate.hour() < 12 || this.isMeridiem === false) ? 0 : 12);
 
-        for (let i = 1; i < 13; i++) {
+        for (let i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 25); i++) {
             result.push(startDate.clone().add(i, "hour"));
         }
 
