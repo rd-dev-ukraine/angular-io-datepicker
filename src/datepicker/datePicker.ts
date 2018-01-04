@@ -245,7 +245,6 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     public getCSSClasses(): string {
         const defaultClass = "datepicker-actions__input";
-        console.log(defaultClass, this.inputClass);
         return this.inputClass ? [this.inputClass, defaultClass].join(" ") : defaultClass;
     }
     
