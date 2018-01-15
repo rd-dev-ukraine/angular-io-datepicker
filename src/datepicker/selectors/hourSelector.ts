@@ -44,7 +44,7 @@ export class HourSelector extends AbstractSelector {
 
         startDate.hour( (startDate.hour() < 12 || this.isMeridiem === false) ? 0 : 12);
 
-        for (let i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 25); i++) {
+        for (let i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 24); i++) {
             result.push(startDate.clone().add(i, "hour"));
         }
 

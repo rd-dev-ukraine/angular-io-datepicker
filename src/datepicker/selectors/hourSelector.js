@@ -32,7 +32,7 @@ var HourSelector = (function (_super) {
         var startDate = this.value;
         var result = [];
         startDate.hour((startDate.hour() < 12 || this.isMeridiem === false) ? 0 : 12);
-        for (var i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 25); i++) {
+        for (var i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 24); i++) {
             result.push(startDate.clone().add(i, "hour"));
         }
         return result;
