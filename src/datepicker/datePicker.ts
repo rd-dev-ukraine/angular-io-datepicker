@@ -127,7 +127,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     @Input()
     public format: string;
     @Input()
-    public isMeridiem: boolean;
+    public isMeridiem: boolean = true;
     @Input()
     public disabled: boolean;
     @Input()

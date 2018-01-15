@@ -73,6 +73,7 @@ var DatePicker = DatePicker_1 = (function () {
         this.mode = "date";
         this.displayDateMode = "day";
         this.showClearButton = true;
+        this.isMeridiem = true;
         this.closeBySelection = false;
         this.inputText = "";
     }
@@ -159,7 +160,6 @@ var DatePicker = DatePicker_1 = (function () {
     };
     DatePicker.prototype.getCSSClasses = function () {
         var defaultClass = "datepicker-actions__input";
-        console.log(defaultClass, this.inputClass);
         return this.inputClass ? [this.inputClass, defaultClass].join(" ") : defaultClass;
     };
     Object.defineProperty(DatePicker.prototype, "isUsingMeridiem", {
