@@ -1,6 +1,7 @@
 import { AbstractControl, ControlValueAccessor } from "@angular/forms";
 import { Component, ComponentRef, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { Moment, utc } from "moment";
+import * as moment from "moment";
 
 import { OverlayService } from "angular-io-overlay";
 
@@ -126,6 +127,8 @@ export class DatePicker implements ControlValueAccessor, OnInit {
     @Input()
     public format: string;
     @Input()
+    public isMeridiem: boolean = true;
+    @Input()
     public disabled: boolean;
     @Input()
     public align: any;
@@ -222,6 +225,7 @@ export class DatePicker implements ControlValueAccessor, OnInit {
             });
 
             c.instance.mode = this.mode;
+            c.instance.isMeridiem = this.isUsingMeridiem;
             c.instance.displayDateMode = this.displayDateMode;
             c.instance.writeValue(val);
             c.instance.registerOnChange((v: any) => this.raiseOnChange(v));
@@ -241,8 +245,11 @@ export class DatePicker implements ControlValueAccessor, OnInit {
 
     public getCSSClasses(): string {
         const defaultClass = "datepicker-actions__input";
-        console.log(defaultClass, this.inputClass);
         return this.inputClass ? [this.inputClass, defaultClass].join(" ") : defaultClass;
+    }
+    
+    public get isUsingMeridiem(): boolean {
+        return this.isMeridiem !== undefined ? this.isMeridiem : moment().localeData().longDateFormat("LT").indexOf("HH") < 0;
     }
 
     /**

@@ -24,13 +24,15 @@ var abstractSelector_1 = require("./abstractSelector");
 var HourSelector = (function (_super) {
     __extends(HourSelector, _super);
     function HourSelector() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.isMeridiem = true;
+        return _this;
     }
     HourSelector.prototype.hours = function () {
         var startDate = this.value;
         var result = [];
-        startDate.hour(startDate.hour() < 12 ? 0 : 12);
-        for (var i = 1; i < 13; i++) {
+        startDate.hour((startDate.hour() < 12 || this.isMeridiem === false) ? 0 : 12);
+        for (var i = (this.isMeridiem === true ? 1 : 0); i < (this.isMeridiem === true ? 13 : 24); i++) {
             result.push(startDate.clone().add(i, "hour"));
         }
         return result;
@@ -44,6 +46,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], HourSelector.prototype, "date", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], HourSelector.prototype, "isMeridiem", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
@@ -60,9 +66,9 @@ HourSelector = __decorate([
     core_1.Component({
         selector: "hour-selector",
         styles: [
-            ".date-set{line-height:2em;text-align:center;vertical-align:middle}.date-set.hidden{display:none}.date-set__dates{display:flex;flex-direction:row;margin:0;padding:0;list-style-type:none;flex-wrap:wrap;justify-content:space-between;align-items:stretch}.date-set__date{cursor:pointer;flex-grow:1;flex-shrink:0;flex-basis:33%}.date-set__date.selected{background:#eee}"
+            ".date-set{line-height:2em;text-align:center;vertical-align:middle}.date-set.hidden{display:none}.date-set__dates{display:flex;flex-direction:row;margin:0;padding:0;list-style-type:none;flex-wrap:wrap;justify-content:space-between;align-items:stretch}.date-set__date{cursor:pointer;flex-grow:1;flex-shrink:0;}.date-set__date.selected{background:#eee}"
         ],
-        template: "\n        <div class=\"date-set\">\n            <ul class=\"date-set__dates\">\n                <li *ngFor=\"let hour of hours()\"\n                    [ngClass]=\"\n                {\n                     'date-set__date': true, \n                     'selected': isCurrentHour(hour) \n                }\"\n                    (mousedown)=\"isCurrentHour(hour) ? hour : dateChange.emit(hour); $event.preventDefault(); $event.stopPropagation();\">\n                    {{ hour.format(\"hh\") }}\n                </li>\n            </ul>\n        </div>\n    "
+        template: "\n        <div class=\"date-set\">\n            <ul class=\"date-set__dates\">\n                <li *ngFor=\"let hour of hours()\"\n                    [ngClass]=\"\n                {\n                     'date-set__date': true, \n                     'selected': isCurrentHour(hour) \n                }\"\n                    [style.flexBasis]=\"isMeridiem === true ? '33%' : '25%'\"\n                    (mousedown)=\"isCurrentHour(hour) ? hour : dateChange.emit(hour); $event.preventDefault(); $event.stopPropagation();\">\n                    {{ hour.format(isMeridiem === true ? 'hh' : 'HH') }}\n                </li>\n            </ul>\n        </div>\n    "
     })
 ], HourSelector);
 exports.HourSelector = HourSelector;

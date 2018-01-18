@@ -94,6 +94,7 @@ Options can be passed to an element via html attributes:
 |`mode`            |string |`date`                                                           |Changes view mode - date, datetime, time                                           |
 |`disabled`        |boolean|`false`                                                          |Disables controls                                                                  |
 |`showClearButton` |boolean|`true`                                                           |Show or not clear input button                                                     |
+|`isMeridiem` |boolean| As defined in the [moment](http://momentjs.com/docs/#/i18n/changing-locale/ ) locale strings                                                           |Uses the 12-hours time format when `true`                                                     |
 |`format`          |string | `defaultFormat = {"date": "LL","datetime": "LLL","time": "LT"};`|Changes view format that provides [moment](http://momentjs.com/docs/#/displaying/ )|
 |`closeBySelection`|boolean|`false`                                                          |Close modal by selection (just when mode=='date')                                  |
 |`inputClass`     |string | `''`                                                            |Additional css-class to be added to `input` element                                 |

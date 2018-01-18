@@ -5,25 +5,26 @@ import { Moment } from "moment";
 @Component({
     selector: "time-component-selector",
     styles: [
-        `.time-component-selector__am-pm{cursor:pointer}.time-component-selector{font-size:2em;display:flex;flex-flow:row nowrap;align-items:center}.time-component-selector__component{padding-right:.5em}`
+        `.time-component-selector__am-pm{cursor:pointer}.time-component-selector{font-size:2em;display:flex;flex-flow:row nowrap;align-items:center}.time-component-selector__component{padding-right:.5em}.time-component-selector__component_last{padding-right:0}`
     ],
     template: `
         <div class="time-component-selector">
             <time-component-scroller class="time-component-selector__component"
                                      [value]="date"
-                                     [format]=" 'hh' "
+                                     [format]="isMeridiem === true ? 'hh' : 'HH'"
                                      (up)="plusHour()"
                                      (down)="minusHour()"
                                      (selectValue)="selectHour.emit($event)">
             </time-component-scroller>
             <time-component-scroller class="time-component-selector__component"
+                                     [ngClass]="{'time-component-selector__component_last': isMeridiem === false}"
                                      [value]="date"
                                      [format]=" 'mm' "
                                      (up)="plusMinute()"
                                      (down)="minusMinute()"
                                      (selectValue)="selectMinute.emit($event)">
             </time-component-scroller>
-            <span class="time-component-selector__am-pm"
+            <span *ngIf="isMeridiem" class="time-component-selector__am-pm"
                   (click)="togglePmAm()">
                 {{ date?.format("A") }}
             </span>
@@ -33,6 +34,8 @@ import { Moment } from "moment";
 export class TimeComponentSelector {
     @Input()
     public date: Moment;
+    @Input()
+    public isMeridiem: boolean = true;
     @Output()
     public dateChange: EventEmitter<Moment> = new EventEmitter<Moment>();
     @Output()
