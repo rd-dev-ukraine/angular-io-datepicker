@@ -19,7 +19,7 @@ npm i angular-io-datepicker --save
 You'll need to add `DatePickerModule` and `OverlayModule` to your application module. There has to be `FormsModule`. If you use Model-Driven Form you'll need to add `ReactiveFormModule` too.
 
 ```typescript
-import { FormsModule, ReactiveFormModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from "angular-io-overlay";
 import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
 
@@ -29,7 +29,7 @@ import { DatePickerModule } from "angular-io-datepicker/src/datepicker/index";
   ],
   imports: [
     FormsModule,
-    ReactiveFormModule,
+    ReactiveFormsModule,
     OverlayModule,
     DatePickerModule,
     ...
@@ -42,7 +42,7 @@ export class AppModule {
 }
 ```
 
-##### Template-Driven Form 
+##### Template-Driven Form
 
 Simply add `date-picker` element with options to your form:
 
